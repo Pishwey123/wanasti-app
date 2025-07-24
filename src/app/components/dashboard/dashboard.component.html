@@ -1,0 +1,190 @@
+<!-- src/app/components/dashboard/dashboard.component.html -->
+
+<div class="dashboard-container">
+    <!-- Header Section -->
+    <header class="dashboard-header">
+      <div class="header-content">
+        <div class="header-main">
+          <h1 class="main-title">Welcome to Your Dashboard</h1>
+          <p class="subtitle-line1">Manage your profile and account settings</p>
+          <p class="subtitle-line2">Access all your personal information in one place</p>
+        </div>
+        
+        <!-- User Info Section -->
+        <div class="user-info-section">
+          <div class="user-avatar">
+            <div class="avatar-circle">
+              <svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M20 21V19C20 17.9391 19.5786 16.9217 18.8284 16.1716C18.0783 15.4214 17.0609 15 16 15H8C6.93913 15 5.92172 15.4214 5.17157 16.1716C4.42143 16.9217 4 17.9391 4 19V21" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <circle cx="12" cy="7" r="4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+          </div>
+          <div class="user-details">
+            <h3 class="user-name">TEST TEST</h3>
+            <p class="user-email">{{ user?.email || 'test@example.com' }}</p>
+            <p class="user-phone">+965 1234567890</p>
+          </div>
+        </div>
+      </div>
+    </header>
+  
+    <div class="dashboard-body">
+      <!-- Left Sidebar Navigation -->
+      <nav class="sidebar">
+        <ul class="nav-menu">
+          <li class="nav-item" [class.active]="currentView === 'edit-profile'">
+            <button (click)="setCurrentView('edit-profile')" class="nav-link">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M20 21V19C20 17.9391 19.5786 16.9217 18.8284 16.1716C18.0783 15.4214 17.0609 15 16 15H8C6.93913 15 5.92172 15.4214 5.17157 16.1716C4.42143 16.9217 4 17.9391 4 19V21" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <circle cx="12" cy="7" r="4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+              Edit Profile
+            </button>
+          </li>
+          <li class="nav-item" [class.active]="currentView === 'faqs'">
+            <button (click)="setCurrentView('faqs')" class="nav-link">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"/>
+                <path d="M9.09 9C9.3251 8.33167 9.78915 7.76811 10.4 7.40913C11.0108 7.05016 11.7289 6.91894 12.4272 7.03871C13.1255 7.15849 13.7588 7.52152 14.2151 8.06353C14.6713 8.60553 14.9211 9.29152 14.92 10C14.92 12 11.92 13 11.92 13" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <line x1="12" y1="17" x2="12.01" y2="17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+              FAQs
+            </button>
+          </li>
+          <li class="nav-item" [class.active]="currentView === 'contact'">
+            <button (click)="setCurrentView('contact')" class="nav-link">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M4 4H20C21.1 4 22 4.9 22 6V18C22 19.1 21.1 20 20 20H4C2.9 20 2 19.1 2 18V6C2 4.9 2.9 4 4 4Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <polyline points="22,6 12,13 2,6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+              Contact Us
+            </button>
+          </li>
+          <li class="nav-item" [class.active]="currentView === 'delete-account'">
+            <button (click)="setCurrentView('delete-account')" class="nav-link danger">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <polyline points="3,6 5,6 21,6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M19 6V20C19 21 18 22 17 22H7C6 22 5 21 5 20V6M8 6V4C8 3 9 2 10 2H14C15 2 16 3 16 4V6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+              Delete Account
+            </button>
+          </li>
+          <li class="nav-item">
+            <button (click)="logout()" class="nav-link danger">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M9 21H5C4.46957 21 3.96086 20.7893 3.58579 20.4142C3.21071 20.0391 3 19.5304 3 19V5C3 4.46957 3.21071 3.96086 3.58579 3.58579C3.96086 3.21071 4.46957 3 5 3H9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <polyline points="16,17 21,12 16,7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <line x1="21" y1="12" x2="9" y2="12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+              Logout
+            </button>
+          </li>
+        </ul>
+      </nav>
+  
+      <!-- Main Content Area -->
+      <main class="main-content">
+        <!-- Edit Profile Form -->
+        <div *ngIf="currentView === 'edit-profile'" class="content-section">
+          <div class="section-header">
+            <h2>Personal Information</h2>
+          </div>
+          
+          <form [formGroup]="profileForm" (ngSubmit)="onUpdateProfile()" class="profile-form">
+            <!-- Profile Image Upload -->
+            <div class="profile-image-section">
+              <div class="image-upload-container">
+                <div class="profile-image-circle">
+                  <svg width="60" height="60" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M20 21V19C20 17.9391 19.5786 16.9217 18.8284 16.1716C18.0783 15.4214 17.0609 15 16 15H8C6.93913 15 5.92172 15.4214 5.17157 16.1716C4.42143 16.9217 4 17.9391 4 19V21" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <circle cx="12" cy="7" r="4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                  <button type="button" class="upload-button">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M23 19C23 19.5304 22.7893 20.0391 22.4142 20.4142C22.0391 20.7893 21.5304 21 21 21H3C2.46957 21 1.96086 20.7893 1.58579 20.4142C1.21071 20.0391 1 19.5304 1 19V8C1 7.46957 1.21071 6.96086 1.58579 6.58579C1.96086 6.21071 2.46957 6 3 6H7L9 4H15L17 6H21C21.5304 6 22.0391 6.21071 22.4142 6.58579C22.7893 6.96086 23 7.46957 23 8V19Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                      <circle cx="12" cy="13" r="4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                  </button>
+                </div>
+                <div class="profile-info">
+                  <h3>TEST TEST</h3>
+                  <p>{{ user?.email || 'test@example.com' }}</p>
+                </div>
+              </div>
+            </div>
+  
+            <!-- Form Fields -->
+            <div class="form-grid">
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="firstName">First Name</label>
+                  <input type="text" id="firstName" formControlName="firstName" class="form-input" placeholder="Enter first name">
+                </div>
+                <div class="form-group">
+                  <label for="lastName">Last Name</label>
+                  <input type="text" id="lastName" formControlName="lastName" class="form-input" placeholder="Enter last name">
+                </div>
+              </div>
+  
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="email">Email Address</label>
+                  <input type="email" id="email" formControlName="email" class="form-input" placeholder="Enter email address">
+                </div>
+                <div class="form-group">
+                  <label for="phone">Phone Number</label>
+                  <input type="tel" id="phone" formControlName="phone" class="form-input" placeholder="Enter phone number">
+                </div>
+              </div>
+  
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="oldPassword">Old Password</label>
+                  <input type="password" id="oldPassword" formControlName="oldPassword" class="form-input" placeholder="Enter current password">
+                </div>
+                <div class="form-group">
+                  <label for="newPassword">New Password</label>
+                  <input type="password" id="newPassword" formControlName="newPassword" class="form-input" placeholder="Enter new password">
+                </div>
+              </div>
+  
+              <div class="form-row">
+                <div class="form-group full-width">
+                  <label for="confirmPassword">Confirm New Password</label>
+                  <input type="password" id="confirmPassword" formControlName="confirmPassword" class="form-input" placeholder="Confirm new password">
+                </div>
+              </div>
+            </div>
+  
+            <!-- Save Button -->
+            <div class="form-actions">
+              <button type="submit" class="save-button" [disabled]="profileForm.invalid || isUpdating">
+                <span *ngIf="!isUpdating">Save Changes</span>
+                <span *ngIf="isUpdating" class="loading-content">
+                  <div class="spinner"></div>
+                  Saving...
+                </span>
+              </button>
+            </div>
+          </form>
+        </div>
+  
+        <!-- Other Views Placeholder -->
+        <div *ngIf="currentView === 'faqs'" class="content-section">
+          <h2>Frequently Asked Questions</h2>
+          <p>FAQ content will be displayed here.</p>
+        </div>
+  
+        <div *ngIf="currentView === 'contact'" class="content-section">
+          <h2>Contact Us</h2>
+          <p>Contact information and form will be displayed here.</p>
+        </div>
+  
+        <div *ngIf="currentView === 'delete-account'" class="content-section">
+          <h2>Delete Account</h2>
+          <p>Account deletion options will be displayed here.</p>
+        </div>
+      </main>
+    </div>
+  </div>
