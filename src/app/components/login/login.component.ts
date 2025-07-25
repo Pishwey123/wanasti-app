@@ -75,7 +75,7 @@ export class LoginComponent {
   }
   onCreateAccount(event: Event): void {
     event.preventDefault();
-    alert('Create Account functionality would be implemented here!\nThis would typically navigate to a registration page.');
+    alert('Let’s help you get started. Creating your account gives you access to everything you need.');
   }
 
   private markFormGroupTouched(): void {
