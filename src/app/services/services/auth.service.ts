@@ -1,4 +1,4 @@
-// src/app/services/auth.service.ts
+
 
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
@@ -16,7 +16,6 @@ export class AuthService {
   public isLoggedIn$ = this.isLoggedInSubject.asObservable();
 
   constructor(private http: HttpClient) {
-    // Check if user is already logged in
     const token = localStorage.getItem('userToken');
     if (token) {
       this.isLoggedInSubject.next(true);

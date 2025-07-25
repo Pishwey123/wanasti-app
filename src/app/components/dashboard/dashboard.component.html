@@ -1,4 +1,3 @@
-<!-- src/app/components/dashboard/dashboard.component.html -->
 
 <div class="dashboard-container">
     <!-- Header Section -->
@@ -83,16 +82,14 @@
         </ul>
       </nav>
   
-      <!-- Main Content Area -->
+    
       <main class="main-content">
-        <!-- Edit Profile Form -->
         <div *ngIf="currentView === 'edit-profile'" class="content-section">
           <div class="section-header">
             <h2>Personal Information</h2>
           </div>
           
           <form [formGroup]="profileForm" (ngSubmit)="onUpdateProfile()" class="profile-form">
-            <!-- Profile Image Upload -->
             <div class="profile-image-section">
               <div class="image-upload-container">
                 <div class="profile-image-circle">
@@ -170,7 +167,6 @@
           </form>
         </div>
   
-        <!-- Other Views Placeholder -->
         <div *ngIf="currentView === 'faqs'" class="content-section">
           <h2>Frequently Asked Questions</h2>
           <p>FAQ content will be displayed here.</p>

@@ -7,8 +7,8 @@ import{ provideHttpClient, withFetch, withInterceptorsFromDi } from '@angular/co
 export const appConfig: ApplicationConfig = {
   providers: [provideZoneChangeDetection({ eventCoalescing: true }), provideRouter(routes),
     provideHttpClient(
-      withFetch(),           // Uses Fetch API instead of XMLHttpRequest
-      withInterceptorsFromDi() // Enables DI-based interceptors
+      withFetch(),           
+      withInterceptorsFromDi() 
     )
   ]
 };

@@ -20,7 +20,6 @@ export interface LoginRequest {
         name: string;
         email: string;
         phone: string;
-        // Add other user properties as needed
       };
       token?: string;
     };

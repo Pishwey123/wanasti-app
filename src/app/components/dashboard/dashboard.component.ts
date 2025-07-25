@@ -1,4 +1,3 @@
-// src/app/components/dashboard/dashboard.component.ts
 
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -36,17 +35,14 @@ export class DashboardComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    // Check if user is logged in
     if (!this.authService.isLoggedIn()) {
       this.router.navigate(['/login']);
       return;
     }
 
-    // Load user data from localStorage
     const userData = localStorage.getItem('userData');
     if (userData) {
       this.user = JSON.parse(userData);
-      // Pre-fill form with user data
       this.profileForm.patchValue({
         firstName: 'TEST',
         lastName: 'TEST',
@@ -64,7 +60,6 @@ export class DashboardComponent implements OnInit {
     if (this.profileForm.valid) {
       this.isUpdating = true;
       
-      // Simulate API call
       setTimeout(() => {
         this.isUpdating = false;
         alert('Profile updated successfully!');

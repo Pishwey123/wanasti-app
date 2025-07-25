@@ -75,9 +75,7 @@ export class LoginComponent {
   }
   onCreateAccount(event: Event): void {
     event.preventDefault();
-    // For now, just show an alert. You can implement navigation to signup page
     alert('Create Account functionality would be implemented here!\nThis would typically navigate to a registration page.');
-    // Example: this.router.navigate(['/register']);
   }
 
   private markFormGroupTouched(): void {
